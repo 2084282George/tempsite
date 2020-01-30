@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{%static "css/base.css" %}" />
+        <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
+        <title>Subcity Radio
+            {% block title_block %}
+            {% endblock %}
+        </title>
+    </head>
+
+    <body>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="/static/images/logo2.png" alt="logo" />
+                </a>
+    
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="https://www.mixcloud.com/Subcity_Radio/">Mixcloud</a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+                <li>
+                    <a href="schedule.html">Schedule</a>
+                </li>
+
+            </ul>
+
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        </nav>
+        
+        {% block body_block %}
+        {% endblock %}
+
+        {% block player_block %}
+        {% endblock %}
+
+        <div class="live">
+            <iframe src="https://mixlr.com/users/7510895/embed" width="100%" height="180px" scrolling="yes" frameborder="no" marginheight="0" marginwidth="0"></iframe>
+        </div>
+
+        <div>
+            <input id="play" type="button" value="Play" />
+            <input id="pause" type="button" value="Pause" />
+            <span id="duration"> </span>
+        </div>
+        <div>
+            Volume:
+            <input id="volume" type="range" min="0" max="10" value="5" />
+        </div>
+
+    </body>
+    <footer>
+        <div>
+            <ul>
+                <li>
+                    <a href="https://www.facebook.com/SubcityRadio">
+                    <img class="social-icon" src="static/images/icons/fb.png" alt="fb"></a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/subcityradio?lang=en">
+                    <img class="social-icon" src="static/images/icons/tw.png" alt="fb"></a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/subcityradio/?hl=en">
+                    <img class="social-icon" src="static/images/icons/ig.png" alt="ig"></a>
+                </li>
+                
+            </ul>
+        </div>
+    </footer>
+    
+    <script src="{% static 'app.js' %}"></script>
+
+    <script src="https://unpkg.com/@barba/core"></script>
+    
+    <script>
+        barba.init({
+            transitions: [{
+                leave({ current, next, trigger }) {
+                    // do something with `current.container` for your leave transition
+                    // then return a promise or use `this.async()`
+                },
+                enter({ current, next, trigger }) {
+                    // do something with `next.container` for your enter transition
+                    // then return a promise or use `this.async()`
+                }
+            }]
+        });
+    </script>
+
+    <script type="text/javascript">
+        // Invoke new Audio object
+        var audio = new Audio('https://stream.subcity.org/subcity.mp3');
+
+        // Get the play button and append an audio play method to onclick
+        var play = document.getElementById('play');
+        play.addEventListener('click', function(){
+            audio.play();
+        }, false);
+
+        // Get the pause button and append an audio pause method to onclick
+        var pause = document.getElementById('pause');
+        pause.addEventListener('click', function(){
+            audio.pause();
+        }, false);
+
+        // Get the HTML5 range input element and append audio volume adjustment to onchange
+        var volume = document.getElementById('volume');
+        volume.addEventListener('change', function(){
+            audio.volume = parseFloat(this.value / 10);
+        }, false);
+
+        // Get where one are in playback and push the time to an element
+        audio.addEventListener("timeupdate", function() {
+            var duration = document.getElementById('duration');
+            var s = parseInt(audio.currentTime % 60);
+            var m = parseInt((audio.currentTime / 60) % 60);
+            duration.innerHTML = m + '.' + s + 'sec';
+        }, false);
+    </script>
+</html>
