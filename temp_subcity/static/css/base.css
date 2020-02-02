@@ -6,6 +6,9 @@
 
 body {
 	overflow:auto;
+    font-family: 'Poppins', sans-serif;
+	background-color: #E73132;
+	color: #ffffff;
 }
 
 nav {
@@ -13,8 +16,7 @@ nav {
 	justify-content: space-around;
 	align-items:center;
 	min-height: 8vh;
-	background-color: #5d4954;
-	background: linear-gradient(to right, #5d4954, #5e334a);
+	background-color: #E73132;
 	font-family: 'Poppins', sans-serif;
 	height:auto;
 }
@@ -27,17 +29,9 @@ nav {
 }
 
 .logo img {
-	width:90px;
+	width:50px;
 	margin:5px;	
 	padding-top: 5px;
-}
-
-.logo img:hover {
-	opacity:0.8;
-	transition:0.3s;
-	-webkit-animation:spin 4s linear infinite;
-    -moz-animation:spin 4s linear infinite;
-	animation:spin 4s linear infinite;	
 }
 
 .nav-links {
@@ -101,20 +95,45 @@ nav {
 
 footer {
 	width: 100%;
-	background-color: rgba(95, 73, 85, 0.849);
-	background: linear-gradient(to left, rgba(95, 73, 85, 0.849), rgba(99, 45, 74, 0.849));
 	color:white;
-	text-align:center;
 	position: absolute;
 	bottom:0;
 	height:auto;
+}
+
+#footerWrapper {
+    display: flex;
 }
 
 footer li {
 	display:inline;
 }
 
+footer .socials {
+    text-align: left;
+}
+
 .social-icon {
+	width:50px;
+	padding:10px;
+    vertical-align: middle;
+}
+
+#liveControls {
+    flex: 120px;
+	padding-left: 80%;
+}
+
+#liveControls:hover {
+	cursor: pointer;
+}
+
+#play {
+	width:50px;
+	padding:10px;
+}
+
+#pause {
 	width:50px;
 	padding:10px;
 }
@@ -123,6 +142,62 @@ footer li {
 	opacity:0.8;
 	transition:0.3s;
 }
+
+.slidecontainer {
+	width: 100%; /* Width of the outside container */
+	
+  }
+  
+  /* The slider itself */
+  .slider {
+	-webkit-appearance: none;  /* Override default CSS styles */
+	appearance: none;
+	width: 100%; /* Full-width */
+	height: 25px; /* Specified height */
+	outline: none;
+	border: 3px solid #ffffff;
+	background: #ffffff; /* Grey background */
+	-webkit-transition: .2s; /* 0.2 seconds transition on hover */
+	transition: opacity .2s;
+
+		-webkit-transform: rotate(270deg);
+		-moz-transform: rotate(270deg);
+		-ms-transform: rotate(270deg);
+		-o-transform: rotate(270deg);
+		transform: rotate(270deg);
+
+		-webkit-transform-origin: 50% 50%;
+		-moz-transform-origin: 50% 50%;
+		-ms-transform-origin: 50% 50%;
+		-o-transform-origin: 50% 50%;
+		transform-origin: 50% 50%;
+
+  }
+  
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+	-webkit-appearance: none; /* Override default look */
+	appearance: none;
+	width: 25px; /* Set a specific slider handle width */
+	height: 19px; /* Slider handle height */
+	background: #E73132;
+	cursor: pointer; /* Cursor on hover */
+	vertical-align: middle;
+  }
+  
+  .slider::-moz-range-thumb {
+	width: 25px; /* Set a specific slider handle width */
+	height: 19px; /* Slider handle height */
+	background: #E73132; /* Green background */
+	cursor: pointer; /* Cursor on hover */
+	vertical-align: middle;
+  }
+
+  .slider:hover {
+	opacity:0.8;
+	transition:0.3s;
+  }
 
 /* DIV with BG image spanning specified height */
 
@@ -168,7 +243,6 @@ footer li {
 		right:0px;
 		height:60vh;
 		top:10vh;
-		background-color:#5e334a;
 		opacity: 0.8;
 		display:flex;
 		flex-direction: column;
@@ -197,6 +271,12 @@ footer li {
 
 .nav-active {
 	transform: translateX(0%);
+}
+
+div#a {
+
+position:absolute;
+    z-index: -10;
 }
 
 @keyframes navLinkFade {
